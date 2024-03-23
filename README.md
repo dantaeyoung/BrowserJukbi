@@ -23,6 +23,56 @@ protocol websockets
 1. You should see `sensor.sitesnooper_url` created in Home Assistant.
 2. Create a Template sensor helper called `sensor.sitesnooper_update_time`. The template value should be
 `{{ states.sensor.sitesnoooper_url.last_changed }}`.
-3. Create a Template sensor helper called `sensor.sitesnooper_duration_since_update`. The template value should be
+3. Create a Template sensor helper called `sensor.sitesnooper_time_since_update`. The template value should be
 `{{ as_timestamp(now())  - as_timestamp(states.sensor.sitesnoooper_url.last_changed) }}`. (This will update once a minute, max)
-4. Create a Helper Threshold Sensor called `sensor.sitesnooper_inDistraction`. The threshold s
+4. Create a Helper Threshold Sensor called `sensor.sitesnooper_inDistraction`. The value should work off of `sensor.sitesnooper_time_since_update`, and the  `hysterisis` set to `0`, `max` set be `60` (or whatever other duration of seconds you deem is appropriate).
+5. Lastly, create an automation. Here's the YAML file:
+```
+alias: SiteSnooper - inDistraction - Handle Change
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.sitesnooper_indistraction
+    enabled: true
+    from: "on"
+    to: "off"
+  - platform: state
+    entity_id:
+      - sensor.sitesnooper_update_time
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.sitesnooper_indistraction
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 219
+                - 31
+                - 31
+            target:
+              entity_id: light.black_reading_light
+          
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.sitesnooper_indistraction
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 45
+                - 83
+                - 235
+            target:
+              entity_id: light.black_reading_light
+          
+mode: single
+```
+
