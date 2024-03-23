@@ -4,6 +4,8 @@ Browser Jukbi is a Chrome extension + Home Assistant integration that alerts you
 
 ![jukbi.jpeg](jukbi.jpeg)
 
+The _jukbi_ is also known as the Seon stick, Awakening stick, Keisaku, xiāng bǎn, or [kyōsaku](https://en.wikipedia.org/wiki/Keisaku_).
+
 # How it works
 
 A Chrome extension sends domains to Home Assistant upon URL/tab change.
