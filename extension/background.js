@@ -37,20 +37,23 @@ function connectToMQTT() {
 
         function sendUpdatedDomain(url) {
 
-            var msg = getDomainFromUrl(url) 
+            var domain = getDomainFromUrl(url) 
 
-            message = new Paho.Message(msg);
+            message = new Paho.Message(domain);
             message.destinationName = "homeassistant/sensor/browserjukbi/url/state";
             client.send(message);
 
+            message = new Paho.Message(domain);
+            message.destinationName = "browserjukbi";
+            client.send(message);
         }
 
         function sendHADiscovery() {
           discoverypayload = { 
               'command_topic': "homeassistant/sensor/browserjukbi/url/set",
               'state_topic': "homeassistant/sensor/browserjukbi/url/state",
-              "unique_id": "url",
-              "name": "URL",
+              "unique_id": "browserjukbiurl",
+              "name": "BrowserJukbiURL",
               "device":{
                  "identifiers":[
                     "browserjukbi"
@@ -63,17 +66,14 @@ function connectToMQTT() {
           discoverymessage = new Paho.Message(JSON.stringify(discoverypayload));
           discoverymessage.destinationName = "homeassistant/sensor/browserjukbi/url/config";
           client.send(discoverymessage);
+            console.log("Sent discoveryMessage");
         }
 
 
         // Called when the client connects
         function onConnect() {
-        console.log("Connected to Mosquitto server");
-        
+            console.log("Connected to Mosquitto server");
           sendHADiscovery();
-          //mstr = "browserjukbi connected -" + new Date().getTime();
-
-          //sendUpdatedDomain(mstr)
         }
 
         // Called when the client loses its connection
