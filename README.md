@@ -32,9 +32,9 @@ protocol websockets
 
 1. You should see `sensor.browserjukbi_url` created in Home Assistant.
 2. Create a Template sensor helper called `sensor.browserjukbi_update_time`. The template value should be
-`{{ states.sensor.sitesnoooper_url.last_changed }}`.
+`{{ states.sensor.browserjukbi_browserjukbiurl.last_changed }}`.
 3. Create a Template sensor helper called `sensor.browserjukbi_time_since_update`. The template value should be
-`{{ as_timestamp(now())  - as_timestamp(states.sensor.sitesnoooper_url.last_changed) }}`. (This will only update once a minute; I understand this is HA's constraint.)
+`{{ as_timestamp(now())  - as_timestamp(states.sensor.browserjukbi_browserjukbiurl.last_changed) }}`. (This will only update once a minute; I understand this is HA's constraint.)
 4. Create a Helper Threshold Sensor called `sensor.browserjukbi_indistraction`. The value should work off of `sensor.browserjukbi_time_since_update`, and the  `hysterisis` set to `0`, `max` set be `60` (or whatever other duration of seconds you deem is appropriate).
 5. Lastly, create an automation. This will either trigger when the domain of the page navigated to changes on Chrome, or when 60 seconds passes without a domain change. Here's the YAML file:
 ```
