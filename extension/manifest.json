@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "SiteSnooper",
+  "name": "BrowserJukbi",
   "version": "1.0",
-  "description": "Whenever you navigate to a new page or switch tabs, SiteSnooper sends ONLY THE DOMAIN to Home Assistant so that you can create automations based on your internet distraction level.",
+  "description": "Browser Jukbi is a Chrome extension + Home Assistant integration that alerts you back to a state of focus.",
   "permissions": ["activeTab", "storage", "tabs", "webNavigation"],
   "background": {
     "service_worker": "background.js"
@@ -12,12 +12,6 @@
       "resources": [ "paho-mqtt.js" ],
       "extension_ids": ["*"],
       "matches": [ "*://*/*" ]
-    }
-  ],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
     }
   ],
   "icons": {

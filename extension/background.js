@@ -21,7 +21,7 @@ function connectToMQTT() {
 
         console.log(brokerHost, brokerPort, username, password)
 
-        var client = new Paho.Client(brokerHost, brokerPort, "sitesnooper-" + new Date().getTime());
+        var client = new Paho.Client(brokerHost, brokerPort, "browserjukbi-" + new Date().getTime());
 
 
         // Set callback handlers
@@ -40,28 +40,28 @@ function connectToMQTT() {
             var msg = getDomainFromUrl(url) 
 
             message = new Paho.Message(msg);
-            message.destinationName = "homeassistant/sensor/sitesnooper/url/state";
+            message.destinationName = "homeassistant/sensor/browserjukbi/url/state";
             client.send(message);
 
         }
 
         function sendHADiscovery() {
           discoverypayload = { 
-              'command_topic': "homeassistant/sensor/sitesnooper/url/set",
-              'state_topic': "homeassistant/sensor/sitesnooper/url/state",
+              'command_topic': "homeassistant/sensor/browserjukbi/url/set",
+              'state_topic': "homeassistant/sensor/browserjukbi/url/state",
               "unique_id": "url",
               "name": "URL",
               "device":{
                  "identifiers":[
-                    "sitesnooper"
+                    "browserjukbi"
                  ],
-                 "name":"SiteSnoooper"
+                 "name":"BrowserJukbi"
               }
 
           }
 
           discoverymessage = new Paho.Message(JSON.stringify(discoverypayload));
-          discoverymessage.destinationName = "homeassistant/sensor/sitesnooper/url/config";
+          discoverymessage.destinationName = "homeassistant/sensor/browserjukbi/url/config";
           client.send(discoverymessage);
         }
 
@@ -71,7 +71,7 @@ function connectToMQTT() {
         console.log("Connected to Mosquitto server");
         
           sendHADiscovery();
-          //mstr = "sitesnooper connected -" + new Date().getTime();
+          //mstr = "browserjukbi connected -" + new Date().getTime();
 
           //sendUpdatedDomain(mstr)
         }
@@ -88,14 +88,6 @@ function connectToMQTT() {
             console.log("Message Arrived:", message.payloadString);
         }
 
-/*
-        // Listen for messages from content script indicating new page navigation
-        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-            if (request.message === "newPageLoaded") {
-                const domain = request.domain;
-                sendUpdatedDomain(domain)
-            }
-        }); */
 
             chrome.tabs.onActivated.addListener(function(activeInfo) {
                 chrome.tabs.get(activeInfo.tabId, function(tab) {
