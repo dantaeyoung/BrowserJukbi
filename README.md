@@ -2,6 +2,7 @@
 
 Browser Jukbi is a Chrome extension + Home Assistant integration that alerts you back to a state of focus.
 
+![jukbi.jpeg](jukbi.jpeg)
 
 # How it works
 
