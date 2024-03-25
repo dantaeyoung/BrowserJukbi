@@ -31,59 +31,208 @@ protocol websockets
 # Home Assistant Setup
 
 1. You should see `sensor.browserjukbi_url` created in Home Assistant.
-2. Create a Template sensor helper called `sensor.browserjukbi_update_time`. The template value should be
-`{{ states.sensor.browserjukbi_browserjukbiurl.last_changed }}`. Device class is `Timestamp`. 
-3. Create a Template sensor helper called `sensor.browserjukbi_time_since_update`. The template value should be
-`{{ as_timestamp(now())  - as_timestamp(states.sensor.browserjukbi_browserjukbiurl.last_changed) }}`. Unit of measurement is `s` and Device class is `Duration`. (This will only update once a minute; I understand this is HA's constraint.)
-4. Create a Helper Threshold Sensor called `sensor.browserjukbi_indistraction`. The value should work off of `sensor.browserjukbi_time_since_update`, and the  `hysterisis` set to `0`, `lower limit` set be `60` (or whatever other duration of seconds you deem is appropriate).
-5. Lastly, create an automation. This will either trigger when the domain of the page navigated to changes on Chrome, or when 60 seconds passes without a domain change. Here's the YAML file:
+
+2. Create two Helpers - input_numbers. 
+
+ - `input_number.browserjukbi_alert_level`: 'BrowserJukbi Alert Level'
+ - `input_number.browserjukbi_previous_alert_level`: 'BrowserJukbi Previous Alert Level'
+
+3. Create three automations:
+
+ - 'BrowserJukbi - 1. Jukbi Alerting' 
+ - 'BrowserJukbi - 2. Jukbi Alertness Decay'
+ - 'BrowserJukbi - 3. Alert Level to Notification' 
+
+The first automation raises the 'alert level' of the Jukbi. 
+
+The second automation triggers every 30 seconds and gradually decays the alert level. 
+
+The third automation triggers actions (plays sounds/notifactions) based on whether the alertness is rising or falling.
+
+### BrowserJukbi - 1. Jukbi Alerting
 ```
-alias: BrowserJukbi - inDistraction - Handle Change
+alias: BrowserJukbi - 1. Jukbi Alerting
 description: ""
 trigger:
   - platform: state
     entity_id:
-      - binary_sensor.browserjukbi_distracted
-    enabled: true
-    from: "on"
-    to: "off"
-  - platform: state
-    entity_id:
-      - sensor.browserjukbi_update_time
-condition: []
+      - sensor.browserjukbi_browserjukbiurl
+condition:
+  - condition: state
+    entity_id: binary_sensor.countdown_timer
+    state: "off"
 action:
-  - choose:
-      - conditions:
-          - condition: state
-            entity_id: binary_sensor.browserjukbi_distracted
-            state: "on"
-        sequence:
-          - service: light.turn_on
-            metadata: {}
-            data:
-              rgb_color:
-                - 219
-                - 31
-                - 31
-            target:
-              entity_id: light.black_reading_light
-
-      - conditions:
-          - condition: state
-            entity_id: binary_sensor.browserjukbi_distracted
-            state: "off"
-        sequence:
-          - service: light.turn_on
-            metadata: {}
-            data:
-              rgb_color:
-                - 45
-                - 83
-                - 235
-            target:
-              entity_id: light.black_reading_light
-
+  - service: input_number.increment
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_number.browserjukbi_alert_level
+    enabled: true
 mode: single
-
 ```
 
+### 'BrowserJukbi - 2. Jukbi Alertness Decay'
+```
+alias: BrowserJukbi - 2. Jukbi Alertness Decay
+description: ""
+trigger:
+  - platform: time_pattern
+    seconds: /30
+    enabled: true
+condition:
+  - condition: state
+    entity_id: binary_sensor.countdown_timer
+    state: "off"
+action:
+  - service: input_number.set_value
+    metadata: {}
+    data:
+      value: >-
+        {{ states('input_number.browserjukbi_alert_level') | multiply(0.75) |
+        int }}
+    target:
+      entity_id: input_number.browserjukbi_alert_level
+mode: single
+```
+### 'BrowserJukbi - 3. Alert Level to Notification' 
+```
+alias: BrowserJukbi - 3. Alert Level to Notification
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - input_number.browserjukbi_alert_level
+condition:
+  - condition: state
+    entity_id: binary_sensor.countdown_timer
+    state: "off"
+action:
+  - if:
+      - condition: numeric_state
+        entity_id: input_number.browserjukbi_alert_level
+        above: input_number.browserjukbi_previous_alert_level
+        alias: If Alert Level is RISING
+    then:
+      - choose:
+          - conditions:
+              - condition: numeric_state
+                entity_id: input_number.browserjukbi_alert_level
+                above: 1.5
+                below: 2.5
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  rgb_color:
+                    - 255
+                    - 138
+                    - 5
+                target:
+                  entity_id: light.black_reading_light
+
+          - conditions:
+              - condition: numeric_state
+                entity_id: input_number.browserjukbi_alert_level
+                above: 2.5
+                below: 3.5
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  rgb_color:
+                    - 219
+                    - 31
+                    - 31
+                target:
+                  entity_id: light.black_reading_light
+
+          - conditions:
+              - condition: numeric_state
+                entity_id: input_number.browserjukbi_alert_level
+                above: 3.5
+                below: 4.5
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  rgb_color:
+                    - 219
+                    - 31
+                    - 31
+                target:
+                  entity_id: light.black_reading_light
+
+          - conditions:
+              - condition: numeric_state
+                entity_id: input_number.browserjukbi_alert_level
+                above: 4.5
+                below: 5.5
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  rgb_color:
+                    - 219
+                    - 31
+                    - 31
+                target:
+                  entity_id: light.black_reading_light
+
+          - conditions:
+              - condition: numeric_state
+                entity_id: input_number.browserjukbi_alert_level
+                above: 5.5
+                below: 6.5
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  rgb_color:
+                    - 219
+                    - 31
+                    - 31
+                target:
+                  entity_id: light.black_reading_light
+
+          - conditions:
+              - condition: numeric_state
+                entity_id: input_number.browserjukbi_alert_level
+                above: 6.5
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  rgb_color:
+                    - 219
+                    - 31
+                    - 31
+                target:
+                  entity_id: light.black_reading_light
+
+    else:
+      - choose:
+          - conditions:
+              - condition: numeric_state
+                entity_id: input_number.browserjukbi_alert_level
+                below: 1
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  rgb_color:
+                    - 45
+                    - 83
+                    - 235
+                target:
+                  entity_id: light.black_reading_light
+
+  - service: input_number.set_value
+    metadata: {}
+    data:
+      value: "{{ states('input_number.browserjukbi_alert_level') }}"
+    target:
+      entity_id: input_number.browserjukbi_previous_alert_level
+mode: single
+```
+
+Note: In the above example I've removed the 'play_media' actions, but you'd want to add a series of sounds in increasing harshness/alertness to represent the Jukbi's feedback.
