@@ -9,6 +9,15 @@ function getDomainFromUrl(url) {
     }
 }
 
+function getDomainWithoutSubdomain(url) {
+  const domain = new URL(url).hostname;
+  const domainParts = domain.split('.');
+  if (domainParts.length >= 2) {
+    return `${domainParts[domainParts.length - 2]}.${domainParts[domainParts.length - 1]}`;
+  }
+  return domain;
+}
+
 
 // Function to establish MQTT connection
 function connectToMQTT() {
@@ -37,7 +46,7 @@ function connectToMQTT() {
 
         function sendUpdatedDomain(url) {
 
-            var domain = getDomainFromUrl(url) 
+            var domain = getDomainWithoutSubdomain(url) 
 
             message = new Paho.Message(domain);
             message.destinationName = "homeassistant/sensor/browserjukbi/url/state";
