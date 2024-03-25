@@ -18,7 +18,11 @@ On the Internet, I have noticed that I can flit from place to place -- link to l
 
 I would like to walk more slowly through the Internet, so that I might attend more deeply to things.
 
-If we conceptualize each place as a _domain name_ (a domain itself, of course, a place-based metaphor for a URL)
+If we conceptualize each 'place on the internet' as being bounded by a domain name, then walking slowly within each place might mean walking more slowly in each domain name. What is a spacious amount of time to spend in one domain, before stepping into another? 5 seconds? 10 seconds? 1 minute? 5 minutes?
+
+What would an internet be, if movements from domain to domain happened every 5 minutes?
+
+
 
 # What it does
 
