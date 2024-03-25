@@ -20,8 +20,23 @@ I would like to walk more slowly through the Internet, so that I might attend mo
 
 If we conceptualize each 'place on the internet' as being bounded by a domain name, then walking slowly within each place might mean walking more slowly in each domain name. What is a spacious amount of time to spend in one domain, before stepping into another? 5 seconds? 10 seconds? 1 minute? 5 minutes?
 
-What would an internet be, if movements from domain to domain happened every 5 minutes?
+What kind of _rhythm of thinking_ would be allowed through a slower rhythm of movement through the Internet?
 
+# Browser죽비/Jukbi
+
+BrowserJukbi is an system that notifies me when I am moving from domain to domain too quickly, inspired by the idea of the 죽비 Jukbi, a bamboo stick that is used by Buddhist teachers to (gently) strike their students and startle them back into a state of focus.
+
+When I move between domains too quickly, the Jukbi's alertness increases. As its alertness goes higher, my environmeht changes -- a sound starts to notify me with a rasping bell, my lights turn redder, a series of increasingly alerting gongs play, and finally, an error sound. Over time, if I stay at one domain, its alertness settles back to relaxation.
+
+By translating the pace of my Internet movement to the acoustic domain, the hopes are to create a sensorial understanding of movement, and encourage a slow movement on the internet.
+
+# Observations
+
+Currently, I have the settings set to stay on each domain, at least 30 seconds at a time.
+
+It turns out that this pace feels surprisingly slow, at least for me. Searching for something on the internet involves a jump to a search engine, then a page, then back to the search engine, repeated a few times. This could involve jumping around five, ten, twenty domains within the span of a minute.
+
+Interestingly, some unexpected strategies have emerged. I have started to keep multiple browser windows already open to specific sites, Because only browser URL changes & tab changes are noticed by BrowserJukbi. Moving between the internet has become moving between windows on my screen. Somehow, this feels more apt; changing windows is more congruent to the mental context-switching that is already necessary to shift between domains.
 
 
 # What it does
