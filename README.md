@@ -1,15 +1,30 @@
 # Browser Jukbi
 
-Browser Jukbi is a Chrome extension + Home Assistant integration that alerts you back to a state of focus.
+Browser Jukbi alerts you back to a state of focus on the Internet.
 
 ![jukbi.jpeg](jukbi.jpeg)
 
 The _jukbi_ is also known as the Seon stick, Awakening stick, Keisaku, xiāng bǎn, or [kyōsaku](https://en.wikipedia.org/wiki/Keisaku_).
 
-# How it works
+# Trying to walk through the Internet
 
+_The rhythm of walking generates a kind of rhythm of thinking, and the passage through a landscape echoes or stimulates the passage through a series of thoughts. This creates an odd consonance between internal and external passage, one that suggests that the mind is also a landscape of sorts and that walking is one way to traverse it. A new thought often seems like a feature of the landscape that was there all along, as though thinking were traveling rather than making. And so one aspect of the history of walking is the history of thinking made concrete—for the motions of the mind cannot be traced, but those of the feet can._
+
+-- Rebecca Solnit, from _Wanderlust: A History of Walking_
+
+I love walking. While walking is specifically a kinaaesthetic activity, a somatic practice, there is much to be learned from the tempo it allows. _The rhythm of walking generates a kind of rhythm of thinking._ 
+
+On the Internet, I have noticed that I can flit from place to place -- link to link, page to page, tab to tab. Am I ever settling in, sitting here in the landscape with meaning? Or am I hummingbird, wings beating so fast you can't see them, darting from spot to spot, ocasionally unmoving but never quite _still_?
+
+I would like to walk more slowly through the Internet, so that I might attend more deeply to things.
+
+If we conceptualize each place as a _domain name_ (a domain itself, of course, a place-based metaphor for a URL)
+
+# What it does
+
+BrowserJukbi is made out of a Chrome extension + Home Assistant integration.
 A Chrome extension sends domains to Home Assistant upon URL/tab change.
-A series of Home Assistant Helpers and automations change a light or (ideally) play a sound when you're switching domains too fast.
+A series of Home Assistant Helpers and automations change a light and play sounds of warning when you're browsing too rapidly.
 
 
 # Extension Setup
