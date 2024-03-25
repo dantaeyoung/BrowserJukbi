@@ -4,7 +4,7 @@ Browser Jukbi alerts you back to a state of focus on the Internet.
 
 ![jukbi.jpeg](jukbi.jpeg)
 
-The _jukbi_ is also known as the Seon stick, Awakening stick, Keisaku, xiāng bǎn, or [kyōsaku](https://en.wikipedia.org/wiki/Keisaku_).
+(The _jukbi_ is also known as the Seon stick, Awakening stick, kyōsaku, xiāng bǎn, or [keisaku](https://en.wikipedia.org/wiki/Keisaku_).)
 
 # Trying to walk through the Internet
 
