@@ -13,7 +13,6 @@ This current setup is particular to my home office network. Ingredients include:
 
 In theory, all of this could be integrated into a single package with an RPI with speaker / line out and a bulb.
 
-- 
 
 ## Extension Setup
 
