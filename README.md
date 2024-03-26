@@ -45,3 +45,4 @@ BrowserJukbi is made out of a Chrome extension + Home Assistant integration.
 A Chrome extension sends domains to Home Assistant upon URL/tab change.
 A series of Home Assistant Helpers and automations change a light and play sounds of warning when you're browsing too rapidly.
 
+For detailed information, please visit [SETUP.md](SETUP.md).
