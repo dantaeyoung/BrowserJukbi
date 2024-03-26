@@ -141,7 +141,8 @@ condition:
     entity_id: binary_sensor.countdown_timer
     state: "off"
 action:
-  - if:
+  - alias: Rising/Falling sounds
+    if:
       - condition: numeric_state
         entity_id: input_number.browserjukbi_alert_level
         above: input_number.browserjukbi_previous_alert_level
@@ -154,95 +155,161 @@ action:
                 above: 1.5
                 below: 2.5
             sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  rgb_color:
-                    - 255
-                    - 138
-                    - 5
+              - service: media_player.play_media
                 target:
-                  entity_id: light.black_reading_light
-
+                  entity_id: media_player.vlc_telnet
+                data:
+                  media_content_id: media-source://dlna_dms/MEDIASERVER/:22$@5
+                  media_content_type: audio/wav
+                metadata:
+                  title: dry_ding
+                  thumbnail: null
+                  media_class: music
+                  children_media_class: null
+                  navigateIds:
+                    - {}
+                    - media_content_type: app
+                      media_content_id: media-source://dlna_dms
+                    - media_content_type: object.container
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:21
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22$203
           - conditions:
               - condition: numeric_state
                 entity_id: input_number.browserjukbi_alert_level
                 above: 2.5
                 below: 3.5
             sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  rgb_color:
-                    - 219
-                    - 31
-                    - 31
+              - service: media_player.play_media
                 target:
-                  entity_id: light.black_reading_light
-
+                  entity_id: media_player.vlc_telnet
+                data:
+                  media_content_id: media-source://dlna_dms/MEDIASERVER/:22$@10
+                  media_content_type: audio/wav
+                metadata:
+                  title: sharp_gong
+                  thumbnail: null
+                  media_class: music
+                  children_media_class: null
+                  navigateIds:
+                    - {}
+                    - media_content_type: app
+                      media_content_id: media-source://dlna_dms
+                    - media_content_type: object.container
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:21
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22$203
           - conditions:
               - condition: numeric_state
                 entity_id: input_number.browserjukbi_alert_level
                 above: 3.5
                 below: 4.5
             sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  rgb_color:
-                    - 219
-                    - 31
-                    - 31
+              - service: media_player.play_media
                 target:
-                  entity_id: light.black_reading_light
-
+                  entity_id: media_player.vlc_telnet
+                data:
+                  media_content_id: media-source://dlna_dms/MEDIASERVER/:22$@6
+                  media_content_type: audio/wav
+                metadata:
+                  title: bowl_4_knocks
+                  thumbnail: null
+                  media_class: music
+                  children_media_class: null
+                  navigateIds:
+                    - {}
+                    - media_content_type: app
+                      media_content_id: media-source://dlna_dms
+                    - media_content_type: object.container
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:21
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22$203
           - conditions:
               - condition: numeric_state
                 entity_id: input_number.browserjukbi_alert_level
                 above: 4.5
                 below: 5.5
             sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  rgb_color:
-                    - 219
-                    - 31
-                    - 31
+              - service: media_player.play_media
                 target:
-                  entity_id: light.black_reading_light
-
+                  entity_id: media_player.vlc_telnet
+                data:
+                  media_content_id: media-source://dlna_dms/MEDIASERVER/:22$@9
+                  media_content_type: audio/wav
+                metadata:
+                  title: bowl_7_knocks
+                  thumbnail: null
+                  media_class: music
+                  children_media_class: null
+                  navigateIds:
+                    - {}
+                    - media_content_type: app
+                      media_content_id: media-source://dlna_dms
+                    - media_content_type: object.container
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:21
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22$203
           - conditions:
               - condition: numeric_state
                 entity_id: input_number.browserjukbi_alert_level
                 above: 5.5
                 below: 6.5
             sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  rgb_color:
-                    - 219
-                    - 31
-                    - 31
+              - service: media_player.play_media
                 target:
-                  entity_id: light.black_reading_light
-
+                  entity_id: media_player.vlc_telnet
+                data:
+                  media_content_id: media-source://dlna_dms/MEDIASERVER/:22$@8
+                  media_content_type: audio/wav
+                metadata:
+                  title: bowl_many
+                  thumbnail: null
+                  media_class: music
+                  children_media_class: null
+                  navigateIds:
+                    - {}
+                    - media_content_type: app
+                      media_content_id: media-source://dlna_dms
+                    - media_content_type: object.container
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:21
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22$203
           - conditions:
               - condition: numeric_state
                 entity_id: input_number.browserjukbi_alert_level
                 above: 6.5
             sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  rgb_color:
-                    - 219
-                    - 31
-                    - 31
+              - service: media_player.play_media
                 target:
-                  entity_id: light.black_reading_light
-
+                  entity_id: media_player.vlc_telnet
+                data:
+                  media_content_id: media-source://dlna_dms/MEDIASERVER/:22$@7
+                  media_content_type: audio/wav
+                metadata:
+                  title: warning_alarms
+                  thumbnail: null
+                  media_class: music
+                  children_media_class: null
+                  navigateIds:
+                    - {}
+                    - media_content_type: app
+                      media_content_id: media-source://dlna_dms
+                    - media_content_type: object.container
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:21
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22$203
     else:
       - choose:
           - conditions:
@@ -250,16 +317,147 @@ action:
                 entity_id: input_number.browserjukbi_alert_level
                 below: 1
             sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  rgb_color:
-                    - 45
-                    - 83
-                    - 235
+              - service: media_player.play_media
                 target:
-                  entity_id: light.black_reading_light
-
+                  entity_id: media_player.vlc_telnet
+                data:
+                  media_content_id: media-source://dlna_dms/MEDIASERVER/:22$@4
+                  media_content_type: audio/x-aiff
+                metadata:
+                  title: soft_gong
+                  thumbnail: null
+                  media_class: music
+                  children_media_class: null
+                  navigateIds:
+                    - {}
+                    - media_content_type: app
+                      media_content_id: media-source://dlna_dms
+                    - media_content_type: object.container
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:21
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22
+                    - media_content_type: object.container.storageFolder
+                      media_content_id: media-source://dlna_dms/MEDIASERVER/:22$203
+  - alias: Lights only
+    choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.browserjukbi_alert_level
+            below: 1
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 45
+                - 83
+                - 235
+            target:
+              entity_id: light.black_reading_light
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.browserjukbi_alert_level
+            above: 0.5
+            below: 1.5
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 148
+                - 253
+                - 78
+            target:
+              entity_id: light.black_reading_light
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.browserjukbi_alert_level
+            above: 1.5
+            below: 2.5
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 255
+                - 200
+                - 0
+            target:
+              entity_id: light.black_reading_light
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.browserjukbi_alert_level
+            above: 2.5
+            below: 3.5
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 255
+                - 123
+                - 0
+            target:
+              entity_id: light.black_reading_light
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.browserjukbi_alert_level
+            above: 3.5
+            below: 4.5
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 255
+                - 102
+                - 0
+            target:
+              entity_id: light.black_reading_light
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.browserjukbi_alert_level
+            above: 4.5
+            below: 5.5
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 255
+                - 38
+                - 0
+            target:
+              entity_id: light.black_reading_light
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.browserjukbi_alert_level
+            above: 5.5
+            below: 6.5
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 255
+                - 0
+                - 149
+            target:
+              entity_id: light.black_reading_light
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.browserjukbi_alert_level
+            above: 6.5
+        sequence:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              rgb_color:
+                - 255
+                - 0
+                - 221
+            target:
+              entity_id: light.black_reading_light
   - service: input_number.set_value
     metadata: {}
     data:
@@ -267,6 +465,6 @@ action:
     target:
       entity_id: input_number.browserjukbi_previous_alert_level
 mode: single
-```
 
-Note: In the above example I've removed the 'play_media' actions, but you'd want to add a series of sounds in increasing harshness/alertness to represent the Jukbi's feedback.
+
+```
